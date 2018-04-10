@@ -6,7 +6,7 @@ const game = require('./game.js');
 
 // this function starts the whole hangman game, it checks if a user types in anything other than a letter and marks them incorrect.  Also has handling for winning and losing.
 
-const userGuess = () => {
+function userGuess() {
     console.log(newWord.print());
     inquirer.prompt([{
         name: 'letter',
@@ -21,11 +21,11 @@ const userGuess = () => {
                 console.log('Please enter only one letter at a time!');
             }
         }
-    }]).then((user) => {
+    }]).then(function(user) {
         console.log('================================================================');
         let letter = user.letter;
         newWord.checkLetter(letter);
-        if (newWord.isLetterValid) {
+        if (newWord.correct) {
             console.log('Sorry, but you already guessed that letter!');
             userGuess();
         } else {
@@ -45,7 +45,7 @@ const userGuess = () => {
 }
 
 // this function handles if the user wants to play again
-const playAgain = () => {
+function playAgain() {
     inquirer.prompt([{
         type: 'input',
         message: 'Would you like to play again? (y/n)',
@@ -53,7 +53,7 @@ const playAgain = () => {
     }]).then((user) => {
         let answer = user.playAgain;
         if (answer === 'y') {
-            game.userPrompt(() => {
+            game.userInput(() => {
                 newWord = new word.Word(game.chosenWord);
                 userGuess();
             });

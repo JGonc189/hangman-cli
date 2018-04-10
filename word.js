@@ -38,13 +38,13 @@ Word.prototype.checkLetter = function(letter) {
 
 // runs the function and checks if word is completed, then returns true or false.
 
-Word.prototype.isComplete = () => {
-	for (let i = 0; i < this.letters.length; i++) {
-		if (!this.letters[i].show) {
-			return false;
-		}
-	}
-	return true;
+Word.prototype.isComplete = function() {
+    for (var i = 0; i < this.letters.length; i++) {
+        if (!this.letters[i].show) {
+            return false;;
+        }
+    }
+    return true;
 };
 
 // prints the output
