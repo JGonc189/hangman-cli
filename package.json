@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/JGonc189/hangman-cli#readme",
   "dependencies": {
-    "inquirer": "^5.1.0"
+    "inquirer": "^5.1.0",
+    "moviedb": "^0.2.10"
   }
 }

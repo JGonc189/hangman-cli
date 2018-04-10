@@ -1,31 +1,70 @@
-/* TODO
-    create letters.js
-    create word.js
-
-
-*/
+// modules
 const inquirer = require('inquirer');
 const letters = require('./letters.js');
 const word = require('./word.js');
+const game = require('./game.js');
 
-const intro = [
-    {
+// this function starts the whole hangman game, it checks if a user types in anything other than a letter and marks them incorrect.  Also has handling for winning and losing.
+
+const userGuess = () => {
+    console.log(newWord.print());
+    inquirer.prompt([{
+        name: 'letter',
+        type: 'text',
+        message: 'Pick a letter!',
+        validate: (string) => {
+            let regEx = new RegExp("^[a-zA-Z\s]{1,1}$");
+            if (regEx.test(string)) {
+                return true;
+            } else {
+                return false;
+                console.log('Please enter only one letter at a time!');
+            }
+        }
+    }]).then((user) => {
+        console.log('================================================================');
+        let letter = user.letter;
+        newWord.checkLetter(letter);
+        if (newWord.isLetterValid) {
+            console.log('Sorry, but you already guessed that letter!');
+            userGuess();
+        } else {
+            if (newWord.isComplete()) {
+                console.log(`Correct!  You Win!! ${newWord.chosenWord} was the hidden word.`);
+                playAgain();
+            } else if (newWord.guessesLeft === 0) {
+                console.log(`Sorry but you are all out of guesses!  The answer was ' ${newWord.chosenWord} '`);
+                playAgain();
+            } else {
+                console.log(`You have ${newWord.guessesLeft} guesses left!`);
+                console.log('================================================================');
+                userGuess();
+            }
+        }
+    });
+}
+
+// this function handles if the user wants to play again
+const playAgain = () => {
+    inquirer.prompt([{
         type: 'input',
-        name: 'answer',
-        message: 'Are you ready to start the game? (y / n)'
-    },
-    {
-        type: 'input',
-        name: 'help',
-        message: 'Do you need help? (y / n)'
-    }
-]
+        message: 'Would you like to play again? (y/n)',
+        name: 'playAgain'
+    }]).then((user) => {
+        let answer = user.playAgain;
+        if (answer === 'y') {
+            game.userPrompt(() => {
+                newWord = new word.Word(game.chosenWord);
+                userGuess();
+            });
+        } else if (answer === 'n') {
+            console.log('Thank you for playing!');
+            return;
+        }
+    });
+}
 
-
-inquirer.prompt([
-    // first word . . .
-    {
-        name: "apple",
-        message: "Known to keep doctors away"
-    }
-]);
+game.userInput(() => {
+    newWord = new word.Word(game.chosenWord);
+    userGuess();
+});
