@@ -1,6 +1,6 @@
 // this prototpye prints the letter if it's correctly guessed.
 
-Letter.prototype.printLetter = () => {
+Letter.prototype.printLetter = function() {
 	if(this.show) {
 		return this.letter;
 	} else {

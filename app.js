@@ -50,10 +50,10 @@ function playAgain() {
         type: 'input',
         message: 'Would you like to play again? (y/n)',
         name: 'playAgain'
-    }]).then((user) => {
+    }]).then(function(user){
         let answer = user.playAgain;
         if (answer === 'y') {
-            game.userInput(() => {
+            game.userInput(function(){
                 newWord = new word.Word(game.chosenWord);
                 userGuess();
             });
@@ -64,7 +64,7 @@ function playAgain() {
     });
 }
 
-game.userInput(() => {
+game.userInput(function(){
     newWord = new word.Word(game.chosenWord);
     userGuess();
 });

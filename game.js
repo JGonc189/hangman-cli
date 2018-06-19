@@ -6,7 +6,7 @@ const MovieDB = require('moviedb')('6733df4b76abb7884b0195f630afb642');
 const inquirer = require('inquirer');
 
 // takes in user input and asks for favorite actor
-const userInput = (input) => {
+function userInput(input) {
 	inquirer.prompt([{
 		type: 'input',
 		message: 'Please type in your favorite actor/actress first name!',
@@ -23,9 +23,9 @@ const userInput = (input) => {
 
 // call to the movie database and return the needed movie information
 
-const getMovies = (actorID, input) => {
+function getMovies(actorID, input) {
 	let moviesArray = [];
-	MovieDB.discoverMovie({with_cast: actorID}, (err, res) => {
+	MovieDB.discoverMovie({with_cast: actorID}, function(err, res) {
 		if (err) {
 			console.log(err);
 			return;
@@ -46,8 +46,8 @@ const getMovies = (actorID, input) => {
 }
 
 // call to the movie db and return the needed actor info
-const getActor = (actor, input) => {
-	MovieDB.searchPerson({query:actor}, (err, res) => {
+function getActor(actor, input) {
+	MovieDB.searchPerson({query:actor}, function(err, res) {
 		if (err) {
 			console.log(err);
 			return;
