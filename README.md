@@ -2,9 +2,7 @@
 
 A Node.js Command line Hangman App that uses the Movie DB API to gather Actor names via user input then uses the name to create a Hangman game via the command line.
 
-<video width="320" height="240" controls>
-  <source src="assets/screengrab.mov" type="video/mp4">
-</video>
+[![Screengrab](http://img.youtube.com/vi/ONW7rcYNQuY/0.jpg)](http://www.youtube.com/watch?v=ONW7rcYNQuY)
 
 ## How to use
 
