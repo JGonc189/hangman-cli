@@ -4,6 +4,10 @@ A Node.js Command line Hangman App that uses the Movie DB API to gather Actor na
 
 ![Screengrab](assets/screengrab.mp4)
 
+<video width="320" height="240" controls>
+  <source src="assets/screengrab.mp4" type="video/mp4">
+</video>
+
 ## How to use
 
 1. Clone repo
