@@ -18,9 +18,8 @@ A Node.js Command line Hangman App that uses the Movie DB API to gather Actor na
 ## Tech Used 
 
 * Node.js
-* JavaScript
 * NPM MovieDB
 * NPM Inquirer
 * NPM Request
-* Ajax
-* APIs
+
+Jason Goncalves 2018
